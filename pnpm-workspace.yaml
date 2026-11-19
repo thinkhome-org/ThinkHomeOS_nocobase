@@ -1,0 +1,73 @@
+# Which dependencies may run install scripts: true compiles a native addon, false skips a script
+# the project does not need. A package left out here stops the install with ERR_PNPM_IGNORED_BUILDS.
+# pnpm 11 reads this from pnpm-workspace.yaml only; see https://pnpm.io/settings/build.
+allowBuilds:
+  better-sqlite3: false
+  esbuild: true
+  oracledb: true
+  tesseract.js: false
+  '@mongodb-js/zstd': false
+  node-liblzma: false
+
+# The application stays at the workspace root; reusable internal packages live below packages/.
+packages: ['packages/*']
+
+# Use msgpackr without its optional native accelerator or platform binary packages.
+ignoredOptionalDependencies: [msgpackr-extract]
+
+# Install dependencies explicitly instead of during dev/build/start.
+# create-app installs them initially; run pnpm install after changing dependencies.
+verifyDepsBeforeRun: false
+
+# Skips re-auditing lockfile entries against the supply-chain policy on every install.
+# The check costs tens of seconds here and re-verifies versions the lockfile already pins;
+# newly resolved packages are still checked. Set to false if outside contributors edit the
+# lockfile. See https://pnpm.io/settings/dependency-resolution#trustlockfile.
+trustLockfile: true
+
+# Reports a dependency whose install script was skipped as a warning instead of failing the
+# install. allowBuilds above decides the packages known today; this keeps a new transitive
+# dependency from stopping the install with a red error before anything is even running.
+# See https://pnpm.io/settings/build#strictdepbuilds.
+strictDepBuilds: false
+
+minimumReleaseAgeExclude:
+  - '@aws-sdk/client-s3@3.1172.0'
+  - '@aws-sdk/middleware-sdk-s3@3.972.90'
+  - '@aws-sdk/s3-request-presigner@3.1172.0'
+  - '@azure/msal-browser@5.30.0'
+  - '@azure/msal-common@16.17.0'
+  - '@azure/msal-node@7.2.3'
+  - '@eslint-react/ast@5.30.5'
+  - '@eslint-react/core@5.30.5'
+  - '@eslint-react/eslint-plugin@5.30.5'
+  - '@eslint-react/eslint@5.30.5'
+  - '@eslint-react/jsx@5.30.5'
+  - '@eslint-react/shared@5.30.5'
+  - '@eslint-react/var@5.30.5'
+  - '@nocobase/agent-protocol@0.1.0-beta.21'
+  - '@nocobase/app-cli-client@0.1.0-beta.24'
+  - '@nocobase/app-cli@1.0.0-beta.37'
+  - '@nocobase/app-plugin-agents@2.0.0-beta.17'
+  - '@nocobase/app-plugin-knowledge@0.1.0-beta.23'
+  - '@nocobase/app-server@5.0.0-beta.8'
+  - '@nocobase/app-skills@0.1.0-beta.69'
+  - '@nocobase/db@1.0.0-beta.29'
+  - electron-to-chromium@1.5.491
+  - eslint-plugin-react-dom@5.30.5
+  - eslint-plugin-react-jsx@5.30.5
+  - eslint-plugin-react-naming-convention@5.30.5
+  - eslint-plugin-react-rsc@5.30.5
+  - eslint-plugin-react-web-api@5.30.5
+  - eslint-plugin-react-x@5.30.5
+  - jose@6.2.18
+  - object-inspect@1.14.0
+  - prosemirror-history@1.5.2
+  - prosemirror-inputrules@1.7.0
+  - prosemirror-schema-list@1.6.1
+  - prosemirror-transform@1.12.7
+  - prosemirror-view@1.43.0
+  - socks@2.8.11
+  - source-map-js@1.2.4
+  - tldts-core@7.5.5
+  - tldts@7.5.5
