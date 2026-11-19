@@ -1,0 +1,27 @@
+version = 1
+name = "ThinkHomeOS"
+
+[setup]
+# postinstall synchronizes the project-local NocoBase 3 Skills.
+script = "pnpm install --frozen-lockfile"
+
+[[actions]]
+name = "Start ThinkHomeOS (Compose)"
+icon = "run"
+command = '''
+set -e
+if [ -f .git ]; then
+    # Worktrees may share a directory name with the main checkout.
+    project_root=$(git rev-parse --show-toplevel)
+    project_id=$(printf '%s\n' "$project_root" | git hash-object --stdin)
+    APP_PORT="${APP_PORT:-13001}" docker compose --project-name "thinkhomeos-$project_id" up --build --wait
+else
+    docker compose up --build --wait
+fi
+'''
+
+[[actions]]
+name = "Check ThinkHomeOS"
+icon = "tool"
+# Match the Node.js version in Dockerfile.
+command = "pnpm --package=node@24.15.0 dlx sh -ec 'pnpm check:packages && pnpm test'"

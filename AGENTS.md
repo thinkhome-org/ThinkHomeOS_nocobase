@@ -4,7 +4,7 @@
 
 See [GITHUB.md](GITHUB.md) for repository workflow and verification.
 
-This is a NocoBase 3 application. Do not apply globally installed NocoBase 2 Skills. You are building the application itself — its pages, its API, its database tables. Everything under this directory is application-owned source code that you may edit directly.
+This is a NocoBase 3 application. Start with the relevant project-local NocoBase 3 Skill and prefer the framework's existing plugins, CLI, APIs, and UI Library for application work. Use shadcn MCP for primitives when directed by the project's NocoBase 3 frontend guidance. Do not apply globally installed NocoBase 2 Skills. You are building the application itself — its pages, its API, its database tables. Everything under this directory is application-owned source code that you may edit directly.
 
 Build application-specific features directly in the application by default. Use a plugin when the user requests one or when code reuse or modular organization calls for a separately registered, maintainable feature. Local plugins belong under `packages/`; the App builds and packages registered local plugins for deployment, so publishing is optional and only needed when distributing the plugin through a package registry. Follow [the project plugin development Skill](.agents/skills/nocobase-app-plugin-development/SKILL.md). Ordinary internal packages can share code without plugin registration; follow [internal packages](.agents/rules/workspace.md) when that is the boundary the application needs.
 
