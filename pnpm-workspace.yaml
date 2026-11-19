@@ -12,6 +12,10 @@ allowBuilds:
 # The application stays at the workspace root; reusable internal packages live below packages/.
 packages: ['packages/*']
 
+# CVE-2026-16633. Remove once officeparser resolves a patched PDF.js release.
+overrides:
+  'officeparser>pdfjs-dist': 6.2.108
+
 # Use msgpackr without its optional native accelerator or platform binary packages.
 ignoredOptionalDependencies: [msgpackr-extract]
 
