@@ -2,7 +2,7 @@
 
 <!-- ThinkHomeOS added repository workflow guidance to this NocoBase template file. -->
 
-See [GITHUB.md](GITHUB.md) for repository workflow and verification.
+See [GITHUB.md](GITHUB.md) for repository workflow and verification. For a pull request review, delegate to the project agent `nocobase-reviewer` and present its findings in chat.
 
 This is a NocoBase 3 application. Start with the relevant project-local NocoBase 3 Skill and prefer the framework's existing plugins, CLI, APIs, and UI Library for application work. Use shadcn MCP for primitives when directed by the project's NocoBase 3 frontend guidance. Do not apply globally installed NocoBase 2 Skills. You are building the application itself — its pages, its API, its database tables. Everything under this directory is application-owned source code that you may edit directly.
 
